@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animelar - Muhammadrasul movie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen"
+  style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('444.jpg') no-repeat center/cover;">
+  <header class="bg-gray-800 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <div class="text-3xl font-bold text-orange-500 cursor-pointer" onclick="location.href='index.html'">Muhammadrasul
+        movie</div>
+      <nav>
+        <button id="menu-toggle" class="md:hidden text-orange-500 text-2xl">☰</button>
+        <ul id="menu" class="hidden md:flex gap-6 text-lg">
+          <li><a href="index.html" class="hover:text-orange-500">Bosh sahifa</a></li>
+          <li><a href="serials.html" class="hover:text-orange-500">Seriallar</a></li>
+          <li><a href="anime.html" class="hover:text-orange-500">Animelar</a></li>
+          <li><a href="game.html" class="hover:text-orange-500">🎮 O'yin</a></li>
+          <li><a href="shop.html" class="hover:text-orange-500">Market</a></li>
+          <li><a href="register.html" class="hover:text-orange-500">Ro'yxatdan o'tish</a></li>
+        </ul>
+      </nav>
+      <input type="text" id="search-input" placeholder="Qidiruv..."
+        class="rounded-full px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+    </div>
+  </header>
+
+  <main class="container mx-auto p-6">
+    <h2 class="text-3xl font-semibold mb-6 text-orange-500">Animelar ro‘yxati</h2>
+    <section>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="animes-grid"></div>
+    </section>
+
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center hidden z-50">
+      <div class="bg-gray-800 p-6 rounded-lg text-white max-w-md w-full relative">
+        <button id="modal-close" class="absolute top-2 right-2 text-orange-500 text-2xl">&times;</button>
+        <div id="modal-content"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const animes = [
+      { title: "Akira", year: "1998", genre: "Sci-Fi, Action", img: "https://i.ytimg.com/vi/nA8KmHC2Z-g/maxresdefault.jpg", trailerUrl: "anime-qahramonlar-dunyosi.html" },
+      { title: "Neon Genesis Evangelion", year: "1995-1996", genre: "Mecha, Drama, Sci-Fi", img: "https://i.ytimg.com/vi/13nSISwxrY4/maxresdefault.jpg", trailerUrl: "anime-sehrli-sayohat.html" },
+      { title: "Dragon Ball Z", year: "1989-1996", genre: "Action, Adventure, Martial Arts", img: "https://i.ytimg.com/vi/sxufB6DxXk0/maxresdefault.jpg", trailerUrl: "anime-yulduzlar-sarguzashti.html" },
+      { title: "Cowboy Bebop", year: "1998-1999", genre: "Sci-Fi, Action, Adventure", img: "https://i.ytimg.com/vi/SR0kPGR6jf4/maxresdefault.jpg", trailerUrl: "anime-oychoq-qishlogi.html" },
+      { title: "Naruto", year: "2002-2007", genre: "Action, Adventure, Fantasy", img: "https://i.ytimg.com/vi/22R0j8UKRzY/maxresdefault.jpg", trailerUrl: "anime-yashil-ormon.html" },
+      { title: "One Piece", year: "1999-*", genre: "Adventure, Comedy, Fantasy", img: "https://i.ytimg.com/vi/LHTYpWI3S6Q/maxresdefault.jpg", trailerUrl: "anime-dinozavrlar-sayohati.html" },
+      { title: "Death Note", year: "2006-2007", genre: "Mystery, Psychological, Thriller", img: "https://i.ytimg.com/vi/NlJZ-YgAt-c/maxresdefault.jpg", trailerUrl: "anime-sarguzashtlar-va-sehr.html" },
+      { title: "Fullmetal Alchemist: Brotherhood", year: "2008-2010", genre: "Action, Adventure, Drama", img: "https://i.ytimg.com/vi/RNwNA1M8A94/maxresdefault.jpg", trailerUrl: "anime-kichik-jasoratlar.html" },
+      { title: "Sailor Moon", year: "1992-1997", genre: "Magical Girl, Romance", img: "https://i.ytimg.com/vi/XDnKDYpvEgo/maxresdefault.jpg", trailerUrl: "anime-yashil-ormon.html" },
+      { title: "Ghost in the Shell", year: "1995", genre: "Sci-Fi, Cyberpunk, Action", img: "https://i.ytimg.com/vi/BkRGHv_e35Q/maxresdefault.jpg", trailerUrl: "anime-dinozavrlar-sayohati.html" },
+      { title: "My Neighbor Totoro", year: "1988", genre: "Fantasy, Family", img: "https://i.ytimg.com/vi/N1L80AtQ0Zg/maxresdefault.jpg", trailerUrl: "anime-sarguzashtlar-va-sehr.html" },
+      { title: "Spirited Away", year: "2001", genre: "Fantasy, Adventure", img: "https://i.ytimg.com/vi/fDUFP7EeXLE/maxresdefault.jpg", trailerUrl: "anime-kichik-jasoratlar.html" },
+      { title: "Bleach", year: "2004-2012", genre: "Action, Supernatural, Adventure", img: "https://i.ytimg.com/vi/1sygUhb8Q2Y/maxresdefault.jpg", trailerUrl: "anime-yashil-ormon.html" },
+      { title: "Attack on Titan", year: "2013-2023", genre: "Action, Drama, Fantasy", img: "https://i.ytimg.com/vi/M_OauHnAFc8/maxresdefault.jpg", trailerUrl: "anime-dinozavrlar-sayohati.html" },
+      { title: "Tokyo Ghoul", year: "2014-2018", genre: "Horror, Supernatural, Drama", img: "https://i.ytimg.com/vi/vGuQeQsoRgU/maxresdefault.jpg", trailerUrl: "anime-sarguzashtlar-va-sehr.html" },
+      { title: "Hunter x Hunter", year: "2011-2014", genre: "Adventure, Fantasy, Action", img: "https://i.ytimg.com/vi/d6kBeJjTGnY/maxresdefault.jpg", trailerUrl: "anime-kichik-jasoratlar.html" },
+      { title: "Sword Art Online", year: "2012-*", genre: "Action, Adventure, Fantasy", img: "https://i.ytimg.com/vi/6ohYYtxfDCg/maxresdefault.jpg", trailerUrl: "anime-yashil-ormon.html" },
+      { title: "Death Parade", year: "2015", genre: "Mystery, Drama, Psychological", img: "https://i.ytimg.com/vi/JSLWt-TMvE8/maxresdefault.jpg", trailerUrl: "anime-dinozavrlar-sayohati.html" },
+      { title: "Your Name", year: "2016", genre: "Romance, Drama, Fantasy", img: "https://i.ytimg.com/vi/xU47nhruN-Q/maxresdefault.jpg", trailerUrl: "anime-sarguzashtlar-va-sehr.html" },
+      { title: "Demon Slayer: Kimetsu no Yaiba", year: "2019-*", genre: "Action, Adventure, Supernatural", img: "https://i.ytimg.com/vi/wyiZWYMilgk/maxresdefault.jpg", trailerUrl: "anime-kichik-jasoratlar.html" },
+    ];
+
+    const animesGrid = document.getElementById('animes-grid');
+
+    function displayAnimes(list) {
+      animesGrid.innerHTML = "";
+      list.forEach(anime => {
+        const card = document.createElement('div');
+        card.className = "bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-orange-500 cursor-pointer transition";
+        card.innerHTML = `
+          <a href="${anime.trailerUrl}" target="_blank" class="block group">
+            <img src="${anime.img}" alt="${anime.title}" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="p-4">
+              <h3 class="text-xl font-semibold text-orange-400 group-hover:text-orange-500">${anime.title}</h3>
+              <p class="text-gray-400">${anime.year}</p>
+            </div>
+          </a>
+        `;
+        animesGrid.appendChild(card);
+      });
+    }
+
+    displayAnimes(animes);
+
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', e => {
+      const query = e.target.value.toLowerCase();
+      const filtered = animes.filter(a => a.title.toLowerCase().includes(query));
+      displayAnimes(filtered);
+    });
+
+  
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+
+  <footer class="bg-gray-800 text-center p-4 mt-10 text-sm text-gray-400">
+    © 2025 Muhammadrasul Movie. Barcha huquqlar himoyalangan.
+  </footer>
+
+</body>
+
+</html>

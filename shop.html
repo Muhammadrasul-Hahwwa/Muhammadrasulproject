@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kino va Snack Savdo Sayti | Muhammadrasul Movie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #1f2937;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #f97316;
+      border-radius: 10px;
+    }
+
+
+    .text-gradient {
+      background: linear-gradient(90deg, #f97316, #ef4444, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+
+    button:focus-visible {
+      outline: 2px solid #f97316;
+      outline-offset: 2px;
+    }
+
+ 
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+
+  <header class="bg-gray-800 shadow sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center p-4 max-w-7xl">
+      <div class="text-3xl font-extrabold text-orange-500 cursor-pointer select-none"
+        onclick="location.href='shop.html'">
+        Muhammadrasul Movie
+      </div>
+      <nav>
+        <ul class="flex gap-8 text-lg font-medium">
+          <li><a href="index.html" class="hover:text-orange-500">Bosh sahifa</a></li>
+          <li><a href="serials.html" class="hover:text-orange-500">Seriallar</a></li>
+          <li><a href="anime.html" class="hover:text-orange-500">Animelar</a></li>
+          <li><a href="game.html" class="hover:text-orange-500">🎮 O'yin</a></li>
+          <li><a href="shop.html" class="hover:text-orange-500">Market</a></li>
+          <li><a href="register.html" class="hover:text-orange-500">Ro'yxatdan o'tish</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container mx-auto flex-grow px-6 py-10 max-w-7xl">
+
+    <h1 class="text-5xl font-extrabold mb-8 text-center text-gradient">
+      🛒 Kino va snack mahsulotlari do‘koni
+    </h1>
+
+    <section class="mb-10 max-w-md mx-auto">
+      <label for="searchInput" class="block text-lg mb-2 font-semibold">Mahsulot qidiring:</label>
+      <input id="searchInput" type="search" placeholder="Mahsulot nomi yoki tavsif bo‘yicha..."
+        class="w-full px-4 py-3 rounded-md bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-orange-400"
+        aria-label="Mahsulotlarni qidirish" />
+    </section>
+
+    <section class="mb-12 max-w-md mx-auto flex justify-center gap-6" role="region"
+      aria-label="Mahsulot kategoriyalari">
+      <button
+        class="category-btn bg-orange-600 hover:bg-orange-700 transition rounded-md px-5 py-2 font-semibold focus:outline-none focus:ring-2 focus:ring-orange-400 active:scale-95"
+        data-category="all" aria-pressed="true">Barchasi</button>
+      <button
+        class="category-btn bg-gray-700 hover:bg-gray-600 transition rounded-md px-5 py-2 font-semibold focus:outline-none focus:ring-2 focus:ring-orange-400"
+        data-category="kino" aria-pressed="false">Kino</button>
+      <button
+        class="category-btn bg-gray-700 hover:bg-gray-600 transition rounded-md px-5 py-2 font-semibold focus:outline-none focus:ring-2 focus:ring-orange-400"
+        data-category="food" aria-pressed="false">Oziq-ovqat</button>
+      <button
+        class="category-btn bg-gray-700 hover:bg-gray-600 transition rounded-md px-5 py-2 font-semibold focus:outline-none focus:ring-2 focus:ring-orange-400"
+        data-category="drink" aria-pressed="false">Ichimlik</button>
+    </section>
+
+    <section id="productsContainer" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" aria-live="polite"
+      aria-label="Mahsulotlar ro'yxati">
+
+    </section>
+
+    <aside class="fixed right-8 top-1/4 w-50 bg-gray-800 rounded-lg shadow-xl p-6 z-40 max-h-[70vh] overflow-y-auto"
+      aria-label="Savat">
+      <h2 class="text-2xl font-semibold mb-5 text-orange-400 flex items-center gap-2">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"></path>
+        </svg>
+        Savat
+      </h2>
+      <div id="cartItems" class="flex flex-col gap-3 min-h-[120px] text-gray-300">
+        Savat bo‘sh...
+      </div>
+      <div
+        class="border-t border-gray-700 mt-5 pt-4 flex justify-between items-center text-lg font-semibold text-orange-400">
+        <span>Jami summa:</span>
+        <span id="cartTotal">0 so'm</span>
+      </div>
+      <div class="mt-5 flex justify-between gap-3">
+        <button id="clearCartBtn"
+          class="flex-grow bg-red-600 hover:bg-red-700 transition rounded-md py-2 font-semibold disabled:opacity-50"
+          disabled>
+          Savatni tozalash
+        </button>
+        <button id="checkoutBtn"
+          class="flex-grow bg-green-600 hover:bg-green-700 transition rounded-md py-2 font-semibold disabled:opacity-50"
+          disabled>
+          To'lovga o'tish
+        </button>
+      </div>
+    </aside>
+
+    <section id="about" class="max-w-3xl mx-auto text-center text-gray-400 mt-24">
+      <h2 class="text-3xl font-semibold mb-6">Biz haqimizda</h2>
+      <p class="leading-relaxed text-lg">
+        Muhammadrasul Movie — kinosevarlar uchun maxsus sayt. Bu yerda siz kino va oziq-ovqat mahsulotlarini xarid
+        qilishingiz mumkin.
+        Biz sifat va mijozlar ehtiyojlarini birinchi o'ringa qo'yamiz. Har qanday savolingiz bo'lsa, biz bilan
+        bog'laning.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-800 text-center p-4 mt-16 text-sm text-gray-400 select-none">
+    © 2025 Muhammadrasul Movie. Barcha huquqlar himoyalangan.
+  </footer>
+
+  <script>
+    "use strict";
+
+
+    const PRODUCTS = Object.freeze([
+
+      {
+        id: 1,
+        category: "kino",
+        name: "Kino Posteri",
+        price: 85000,
+        img: "https://images.uzum.uz/crkri09bjcvd8a7764vg/original.jpg",
+        description: "Kino posteri, devoringiz uchun ajoyib dekoratsiya."
+      },
+      {
+        id: 2,
+        category: "kino",
+        name: "Futbolka",
+        price: 115000,
+        img: "https://images.uzum.uz/ct87gb7iub3d1eokd0q0/original.jpg",
+        description: "Yuqori sifatli fight club filmi mavzusidagi futbolka."
+      },
+      {
+        id: 3,
+        category: "kino",
+        name: "Kino Plyonka",
+        price: 379000,
+        img: "https://png.pngtree.com/thumb_back/fh260/background/20190221/ourmid/pngtree-film-video-tape-gray-banner-image_14622.jpg",
+        description: "Original kino plyonkasi, kolleksiya uchun."
+      },
+      {
+        id: 4,
+        category: "kino",
+        name: "Kino stikerlar to`plami",
+        price: 15000,
+        img: "https://images.uzum.uz/cponngb6eisq2rkcjck0/original.jpg",
+        description: "Noutbukingiz yoki kampyuteringiz uchun."
+      },
+      {
+        id: 5,
+        category: "kino",
+        name: "Squid game o'yinidagi toshchalar",
+        price: 9000,
+        img: "https://images.uzum.uz/d01uuulpb7fbmqmomd1g/original.jpg",
+        description: "Squid game muhlislari uchun."
+      },
+      {
+        id: 6,
+        category: "kino",
+        name: "3d ko'zoynak",
+        price: 262000,
+        img: "https://images.uzum.uz/d19g5nr3uvppu2acesq0/original.jpg",
+        description: "Sifatli kino DVD diski, yaxshi ko‘rgan kinolaringiz uchun."
+      },
+      {
+        id: 7,
+        category: "kino",
+        name: "Death note - devor uchun rasm",
+        price: 262000,
+        img: "https://m.media-amazon.com/images/I/61RTBw4-sJL.jpg",
+        description: "Death note anime mavzusidagi devor rasmi."
+      },
+
+      {
+        id: 8,
+        category: "food",
+        name: "Snickers",
+        price: 19000,
+        img: "https://ir.ozone.ru/s3/multimedia-1-6/c1000/7028823318.jpg",
+        description: "Snickers shokoladli batonchik."
+      },
+      {
+        id: 12,
+        category: "food",
+        name: "Coca-Cola",
+        price: 17000,
+        img: "https://images.uzum.uz/bss7ue0pjpjlft9bikq0/original.jpg",
+        description: "Coca-Cola 1L."
+      },
+
+      {
+        id: 13,
+        category: "drink",
+        name: "Pepsi 2L",
+        price: 23000,
+        img: "https://dostavo4ka.uz/upload-file/2021/07/01/6222/750x750-e67fdad5-0604-41bf-8e41-0a514960f1d5.jpg",
+        description: "Pepsi 2 litr."
+      },
+      {
+        id: 14,
+        category: "drink",
+        name: "Fanta 2L",
+        price: 23000,
+        img: "https://i.ebayimg.com/images/g/QWEAAOSwjr5mqJKN/s-l1200.jpg",
+        description: "Fanta 2 litr."
+      },
+      {
+        id: 15,
+        category: "drink",
+        name: "Sprite 2L",
+        price: 23000,
+        img: "https://images.uzum.uz/cth89ckopsf31vcqkfrg/original.jpg",
+        description: "Sprite 2 litr."
+      },
+    ]);
+
+  
+    const cart = {};
+
+
+    const productsContainer = document.getElementById("productsContainer");
+    const searchInput = document.getElementById("searchInput");
+    const categoryButtons = document.querySelectorAll(".category-btn");
+    const cartItemsContainer = document.getElementById("cartItems");
+    const cartTotalDisplay = document.getElementById("cartTotal");
+    const clearCartBtn = document.getElementById("clearCartBtn");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+
+
+    function formatPrice(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " so'm";
+    }
+
+
+    function renderProducts() {
+      const searchText = searchInput.value.trim().toLowerCase();
+      const activeCategoryBtn = [...categoryButtons].find(btn => btn.getAttribute("aria-pressed") === "true");
+      const activeCategory = activeCategoryBtn ? activeCategoryBtn.dataset.category : "all";
+
+     
+      let filteredProducts = PRODUCTS.filter(product => {
+        const matchesCategory = activeCategory === "all" || product.category === activeCategory;
+        const matchesSearch = product.name.toLowerCase().includes(searchText) || product.description.toLowerCase().includes(searchText);
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filteredProducts.length === 0) {
+        productsContainer.innerHTML = `<p class="col-span-full text-center text-gray-400">Mahsulotlar topilmadi.</p>`;
+        return;
+      }
+
+      productsContainer.innerHTML = filteredProducts
+        .map(
+          product => `
+      <article class="bg-gray-800 rounded-lg overflow-hidden shadow-lg flex flex-col">
+        <img src="${product.img}" alt="Mahsulot rasmi: ${product.name}" class="h-56 w-full object-cover" loading="lazy" />
+        <div class="p-5 flex flex-col flex-grow">
+          <h3 class="text-xl font-semibold mb-1">${product.name}</h3>
+          <p class="text-gray-300 flex-grow">${product.description}</p>
+          <p class="mt-3 text-orange-400 font-bold text-lg">${formatPrice(product.price)}</p>
+          <button
+            type="button"
+            class="mt-4 bg-orange-600 hover:bg-orange-700 focus:ring-4 focus:ring-orange-400 transition rounded-md py-2 font-semibold"
+            aria-label="Mahsulotni savatga qo'shish: ${product.name}"
+            data-product-id="${product.id}"
+          >
+            Savatga qo'shish
+          </button>
+        </div>
+      </article>
+      `
+        )
+        .join("");
+
+
+      productsContainer.querySelectorAll("button[data-product-id]").forEach(button => {
+        button.addEventListener("click", () => {
+          const id = parseInt(button.dataset.productId, 10);
+          addToCart(id);
+        });
+      });
+    }
+
+    function updateCart() {
+      const cartEntries = Object.entries(cart);
+      if (cartEntries.length === 0) {
+        cartItemsContainer.textContent = "Savat bo‘sh...";
+        clearCartBtn.disabled = true;
+        checkoutBtn.disabled = true;
+        cartTotalDisplay.textContent = "0 so'm";
+        return;
+      }
+
+      clearCartBtn.disabled = false;
+      checkoutBtn.disabled = false;
+
+      cartItemsContainer.innerHTML = "";
+      let totalPrice = 0;
+
+      cartEntries.forEach(([idStr, qty]) => {
+        const id = Number(idStr);
+        const product = PRODUCTS.find(p => p.id === id);
+        if (!product) return;
+
+        const itemTotal = product.price * qty;
+        totalPrice += itemTotal;
+
+        const itemElem = document.createElement("div");
+        itemElem.className = "flex justify-between items-center gap-4";
+
+        itemElem.innerHTML = `
+        <div class="flex flex-col flex-grow">
+          <strong class="text-white">${product.name}</strong>
+          <small class="text-gray-400">${formatPrice(product.price)} x ${qty} = ${formatPrice(itemTotal)}</small>
+        </div>
+        <div class="flex items-center gap-2">
+          <button aria-label="Mahsulot miqdorini kamaytirish: ${product.name}" class="text-orange-400 hover:text-orange-600 font-bold text-xl px-1" data-action="decrement" data-product-id="${id}">−</button>
+          <span class="w-6 text-center">${qty}</span>
+          <button aria-label="Mahsulot miqdorini oshirish: ${product.name}" class="text-orange-400 hover:text-orange-600 font-bold text-xl px-1" data-action="increment" data-product-id="${id}">+</button>
+          <button aria-label="Mahsulotni savatdan o'chirish: ${product.name}" class="text-red-500 hover:text-red-600 font-bold text-lg ml-3" data-action="remove" data-product-id="${id}">×</button>
+        </div>
+      `;
+
+        cartItemsContainer.appendChild(itemElem);
+      });
+
+      cartTotalDisplay.textContent = formatPrice(totalPrice);
+
+
+      cartItemsContainer.querySelectorAll("button").forEach(button => {
+        const id = Number(button.dataset.productId);
+        const action = button.dataset.action;
+
+        button.addEventListener("click", () => {
+          if (action === "increment") {
+            cart[id] = (cart[id] || 0) + 1;
+          } else if (action === "decrement") {
+            if (cart[id] > 1) {
+              cart[id]--;
+            } else {
+              delete cart[id];
+            }
+          } else if (action === "remove") {
+            delete cart[id];
+          }
+          updateCart();
+        });
+      });
+    }
+
+
+    function addToCart(productId) {
+      cart[productId] = (cart[productId] || 0) + 1;
+      updateCart();
+    }
+
+
+    categoryButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        categoryButtons.forEach(b => {
+          b.setAttribute("aria-pressed", "false");
+          b.classList.remove("bg-orange-600");
+          b.classList.add("bg-gray-700");
+        });
+        btn.setAttribute("aria-pressed", "true");
+        btn.classList.remove("bg-gray-700");
+        btn.classList.add("bg-orange-600");
+        renderProducts();
+      });
+    });
+
+
+    searchInput.addEventListener("input", () => {
+      renderProducts();
+    });
+
+
+    clearCartBtn.addEventListener("click", () => {
+      for (const key in cart) {
+        delete cart[key];
+      }
+      updateCart();
+    });
+
+
+    checkoutBtn.addEventListener("click", () => {
+      if (Object.keys(cart).length === 0) return;
+
+      alert(
+        `To'lov uchun umumiy summa: ${cartTotalDisplay.textContent}. Rahmat xaridingiz uchun!`
+      );
+      for (const key in cart) {
+        delete cart[key];
+      }
+      updateCart();
+    });
+
+
+    renderProducts();
+    updateCart();
+  </script>
+
+</body>
+
+</html>

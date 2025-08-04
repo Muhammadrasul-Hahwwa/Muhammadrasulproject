@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kino O‘yini - Muhammadrasul movie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('124.jpg') no-repeat center/cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .quiz-box {
+      background-color: rgba(31, 41, 55, 0.9);
+      
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 0 15px rgba(255, 165, 0, 0.7);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="bg-gray-800 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <div class="text-3xl font-bold text-orange-500 cursor-pointer" onclick="location.href='index.html'">
+        Muhammadrasul movie
+      </div>
+      <nav>
+        <ul class="flex gap-6 text-lg">
+          <li><a href="index.html" class="hover:text-orange-500">Bosh sahifa</a></li>
+          <li><a href="serials.html" class="hover:text-orange-500">Seriallar</a></li>
+          <li><a href="anime.html" class="hover:text-orange-500">Animelar</a></li>
+          <li><a href="game.html" class="hover:text-orange-500">🎮 O'yin</a></li>
+          <li><a href="shop.html" class="hover:text-orange-500">Market</a></li>
+          <li><a href="register.html" class="hover:text-orange-500">Ro'yxatdan o'tish</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="quiz-box">
+      <h1 class="text-4xl font-bold text-orange-500 mb-8">🎬 Kinodan iqtibosni toping</h1>
+      <p id="quote" class="text-lg mb-6 italic min-h-[4rem]">Iqtibos yuklanmoqda...</p>
+      <input type="text" id="answer" placeholder="Film nomini ingliz tilida yozing..."
+        class="w-full px-4 py-3 rounded bg-gray-700 text-white placeholder-gray-400 mb-6 focus:outline-none focus:ring-2 focus:ring-orange-500 text-lg"
+        autocomplete="off" />
+      <div class="flex justify-center gap-6 mb-6 flex-wrap">
+        <button onclick="checkAnswer()"
+          class="bg-orange-500 px-8 py-3 rounded hover:bg-orange-600 transition text-lg">Tekshirish</button>
+        <button onclick="nextQuote()"
+          class="bg-gray-600 px-8 py-3 rounded hover:bg-gray-700 transition text-lg">Keyingisi</button>
+      </div>
+      <p id="result" class="text-lg font-semibold mb-2 min-h-[2rem]"></p>
+      <p class="text-orange-400 text-xl">Ball: <span id="score">0</span></p>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-center p-4 mt-10 text-sm text-gray-400">
+    © 2025 Muhammadrasul Movie. Barcha huquqlar himoyalangan.
+  </footer>
+
+  <script>
+    const quotes = [
+      { quote: "Kuch sen bilan bo‘lsin.", movie: "Star Wars" },
+      { quote: "Men unga rad etib bo‘lmas taklif qilaman.", movie: "The Godfather" },
+      { quote: "Nega juda jiddiy?", movie: "The Dark Knight" },
+      { quote: "Cheksiz va undan ham uzoqqa!", movie: "Toy Story" },
+      { quote: "Hayot shokolad qutisiga o‘xshaydi.", movie: "Forrest Gump" },
+      { quote: "Men o‘zimni jang qilaman deb aytdim.", movie: "Gladiator" },
+      { quote: "Sening onging o‘chadi, chaqmoqdan kuch oladi.", movie: "Harry Potter and the Sorcerer's Stone" },
+      { quote: "Yaxshi odam bo‘lish oson emas, lekin qadrli.", movie: "The Pursuit of Happyness" },
+      { quote: "Uzoq yo‘ldan boshlab har bir safar bitta qadamdan boshlanadi.", movie: "The Lord of the Rings: The Fellowship of the Ring" },
+      { quote: "Sen juda kuchlisan, seni hech kim to‘xtata olmaydi.", movie: "Wonder Woman" },
+      { quote: "Har doim orzu qil, hech qachon taslim bo‘lma.", movie: "La La Land" },
+      { quote: "Ba'zida, eng katta jasorat — bu yurakdan kechishdir.", movie: "Braveheart" },
+      { quote: "Haqiqiy do‘st qiyin paytlarda bilinar.", movie: "The Shawshank Redemption" },
+      { quote: "Hayot davomida o‘rganamiz, o‘rganamiz va yana o‘rganamiz.", movie: "Dead Poets Society" },
+      { quote: "Erkinlik uchun kurash doimo qadrlidir.", movie: "12 Years a Slave" },
+      { quote: "Odamlar orzulari bilan yashaydi.", movie: "Inception" },
+      { quote: "Sen o‘zingni bilsang, dunyoni ham bilasan.", movie: "The Matrix" },
+      { quote: "Qahramonlik — bu harakatda, emas, so‘zda.", movie: "Captain America: The First Avenger" },
+      { quote: "Yaxshi kino yurakni qamrab oladi.", movie: "Cinema Paradiso" },
+      { quote: "Haqiqiy sevgi hamma narsadan ustundir.", movie: "Titanic" },
+      { quote: "Sen hech qachon yolg‘iz emassan.", movie: "The Lion King" },
+      { quote: "Hayot - bu vaqt mashinasi, vaqtni qadrlash kerak.", movie: "Interstellar" },
+      { quote: "Har doim ishon, hatto umidsiz vaziyatlarda ham.", movie: "The Fault in Our Stars" },
+      { quote: "Kuchli bo‘l, lekin rahm-shafqatni unutmang.", movie: "Wonder" },
+      { quote: "Orzular qayerga olib borishini hech kim bilmaydi.", movie: "Inception" },
+      { quote: "Hayotdagi eng muhim narsa - sevgi va do‘stlik.", movie: "Up" },
+      { quote: "Sen juda muhim va qadrli insansan.", movie: "Inside Out" },
+      { quote: "Har bir kishi o‘z qahramoni bo‘lishi mumkin.", movie: "Spider-Man" },
+      { quote: "Yuragingni tingla va hech qachon taslim bo‘lma.", movie: "Moana" },
+      { quote: "Do‘stlik eng kuchli qurol.", movie: "Toy Story" },
+      { quote: "Hayotda eng zo‘r sarguzashtlar doimo kutmoqda.", movie: "Pirates of the Caribbean" },
+      { quote: "Harakatda kuch bor.", movie: "The Avengers" },
+      { quote: "Sabr-toqat bilan hamma narsa mumkin.", movie: "Slumdog Millionaire" },
+      { quote: "Yaxshi inson bo‘lish — eng ulug‘ maqsad.", movie: "The Pursuit of Happyness" },
+      { quote: "Hayot - bu imkoniyatlar to‘la daryo.", movie: "The Secret Life of Walter Mitty" },
+      { quote: "Haqiqiy qahramonlar ko‘zga ko‘rinmaydi.", movie: "Batman Begins" },
+      { quote: "Sen o‘z taqdiring egasisan.", movie: "The Truman Show" },
+      { quote: "Umid hech qachon so‘nmaydi.", movie: "The Green Mile" },
+      { quote: "Sening ishonching olamni o‘zgartirishi mumkin.", movie: "The Matrix" },
+      { quote: "Hayotning har bir daqiqasi qadrli.", movie: "Before Sunrise" },
+      { quote: "Hayot - bu sayohat, uni qadrlash kerak.", movie: "The Bucket List" },
+      { quote: "Sevgi butun dunyoni yengadi.", movie: "The Notebook" },
+      { quote: "Sen o‘zingdan kuchlisanki, bunga ishon.", movie: "Kung Fu Panda" },
+      { quote: "Har bir inson o‘z yo‘lini topishi kerak.", movie: "Life of Pi" },
+      { quote: "Qiyinchiliklar faqat kuchli insonlarni tarbiyalaydi.", movie: "Gladiator" },
+      { quote: "Sen o‘z dunyongni yaratishing mumkin.", movie: "The Lego Movie" },
+      { quote: "Haqiqiy baxt ichki tinchlikdan keladi.", movie: "Eat Pray Love" },
+      { quote: "Orzularni amalga oshirish uchun harakat qil.", movie: "La La Land" },
+      { quote: "Yurakdagi sevgi eng kuchli qurol.", movie: "Beauty and the Beast" },
+      { quote: "Sening hikoyang hali tugamagan.", movie: "Coco" },
+      { quote: "Qiyinchiliklarda kuch va jasorat topiladi.", movie: "Braveheart" },
+      { quote: "Har bir tong yangi umid bilan boshlanadi.", movie: "The Secret Life of Walter Mitty" },
+      { quote: "Sen doimo o‘zgarishing mumkin.", movie: "Groundhog Day" },
+      { quote: "Hayotda doimo o‘rganish kerak.", movie: "Dead Poets Society" },
+      { quote: "Sen o‘z taqdiringni yozayotgan qalam senga tegishli.", movie: "The Adjustment Bureau" },
+      { quote: "Sabr-toqat yuksakliklarga olib boradi.", movie: "Slumdog Millionaire" },
+      { quote: "Haqiqiy do‘stlik va sodiqlik qimmatbaho.", movie: "Harry Potter and the Sorcerer's Stone" },
+      { quote: "Sen kuchli va jasur insansan.", movie: "Wonder Woman" },
+      { quote: "Orzular sarguzashtga olib boradi.", movie: "Up" },
+      { quote: "Sen o‘z qahramoning.", movie: "Spider-Man" },
+      { quote: "Yuragingni tingla va hech qachon taslim bo‘lma.", movie: "Moana" },
+      { quote: "Haqiqiy sevgi doimo mavjud.", movie: "Titanic" },
+      { quote: "Hayotdagi har bir daqiqa qimmatli.", movie: "Before Sunset" },
+      { quote: "Harakatda kuch bor.", movie: "The Avengers" },
+      { quote: "Sen hech qachon yolg‘iz emassan.", movie: "The Lion King" },
+      { quote: "Orzular amalga oshadi, unga ishon.", movie: "The Pursuit of Happyness" },
+      { quote: "Ba'zida eng katta jasorat — yurakdan kechishdir.", movie: "Braveheart" },
+      { quote: "Sen o‘z qahramoning, dunyoni o‘zgartirishing mumkin.", movie: "The Matrix" },
+      { quote: "Yaxshi inson bo‘lish — eng ulug‘ maqsad.", movie: "The Pursuit of Happyness" },
+      { quote: "Hayotda har bir kun — yangi imkoniyat.", movie: "The Secret Life of Walter Mitty" },
+      { quote: "Sen o‘z taqdiring egasisan.", movie: "The Truman Show" },
+      { quote: "Sevgi butun dunyoni yengadi.", movie: "The Notebook" },
+      { quote: "Har doim orzu qil va hech qachon taslim bo‘lma.", movie: "La La Land" },
+      { quote: "Sen juda muhim va qadrli insansan.", movie: "Inside Out" },
+      { quote: "Haqiqiy qahramonlik harakatlarda.", movie: "Captain America: The First Avenger" },
+      { quote: "Ba'zida hayot bizni sinaydi, lekin kuch berar.", movie: "Rocky" },
+      { quote: "Yuragingni tingla, u senga yo‘l ko‘rsatadi.", movie: "Moana" },
+      { quote: "Sen hech qachon yolg‘iz emassan.", movie: "The Lion King" },
+      { quote: "Orzular qayerga olib borishini hech kim bilmaydi.", movie: "Inception" },
+      { quote: "Sabr-toqat bilan hamma narsa mumkin.", movie: "Slumdog Millionaire" }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function showQuote() {
+      document.getElementById("quote").innerText = quotes[current].quote;
+      document.getElementById("answer").value = "";
+      document.getElementById("result").innerText = "";
+    }
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answer").value.trim().toLowerCase();
+      const correctAnswer = quotes[current].movie.toLowerCase();
+
+      if (userAnswer === correctAnswer) {
+        score++;
+        document.getElementById("result").innerText = "✅ To'g'ri!";
+        document.getElementById("result").classList.add("text-green-400");
+        document.getElementById("result").classList.remove("text-red-400");
+      } else {
+        document.getElementById("result").innerText = `❌ Noto'g'ri! To'g'ri javob: ${quotes[current].movie}`;
+        document.getElementById("result").classList.add("text-red-400");
+        document.getElementById("result").classList.remove("text-green-400");
+      }
+
+      document.getElementById("score").innerText = score;
+    }
+
+    function nextQuote() {
+      current = (current + 1) % quotes.length;
+      showQuote();
+    }
+
+    showQuote();
+  </script>
+</body>
+
+</html>

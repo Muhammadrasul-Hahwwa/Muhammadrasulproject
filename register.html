@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Serialli Roʻyxatdan Oʻtish</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      transition: background-color 0.5s ease, color 0.5s ease, background-image 0.7s ease;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    input, button {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
+      pointer-events: none;
+      transition: background 0.5s ease;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gray-900 text-white font-sans p-6">
+
+  <div class="max-w-md w-full bg-gray-800 bg-opacity-80 rounded-lg p-8 shadow-lg backdrop-blur-sm">
+    <h1 class="text-3xl font-bold mb-6 text-center select-none">Serial Tanlang va Roʻyxatdan oʻting</h1>
+    
+    <label for="serialSelect" class="block mb-2 font-semibold select-none">Sevimli serialingizni tanlang:</label>
+    <select id="serialSelect" class="w-full p-3 rounded border border-gray-700 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-6">
+      <option value="">-- Serialni tanlang --</option>
+      <option value="breakingbad">Breaking Bad</option>
+      <option value="bettercallsaul">Better Call Saul</option>
+      <option value="thesopranos">The Sopranos</option>
+      <option value="dexter">Dexter</option>
+      <option value="theoffice">The Office</option>
+      <option value="theboys">The Boys</option>
+      <option value="walkingdead">The Walking Dead</option>
+      <option value="prisonbreak">Prison Break</option>
+      <option value="loki">Loki</option>
+      <option value="theflash">The Flash</option>
+      <option value="narcos">Narcos</option>
+      <option value="dark">Dark</option>
+      <option value="chernobyl">Chernobyl</option>
+      <option value="peakyblinders">Peaky Blinders</option>
+      <option value="thepenguin">The Penguin</option>
+    </select>
+
+    <form id="signupForm" class="space-y-4" novalidate>
+      <input type="text" placeholder="Toʻliq ismingiz" required class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-indigo-400 focus:outline-none" />
+      <input type="email" placeholder="Email manzilingiz" required class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-indigo-400 focus:outline-none" />
+      <input type="password" placeholder="Parolingiz (kamida 8 ta belgi)" minlength="8" required class="w-full p-3 rounded bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-indigo-400 focus:outline-none" />
+      <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 font-semibold py-3 rounded transition">Roʻyxatdan oʻtish</button>
+    </form>
+  </div>
+
+<script>
+  const serialColors = {
+    breakingbad: { bg: '#1f2937', text: '#4caf50', img: 'https://c4.wallpaperflare.com/wallpaper/582/58/501/breaking-bad-walter-white-jesse-pinkman-wallpaper-preview.jpg' },
+    bettercallsaul: { bg: '#000000', text: '#ffc107', img: 'https://wallpapercat.com/w/full/3/1/b/2012433-1920x1080-desktop-full-hd-better-call-saul-wallpaper-image.jpg' },
+    thesopranos: { bg: '#000000', text: '#d32f2f', img: 'https://wallpapers.com/images/hd/the-sopranos-mv5fnmtqaxiudtrd.jpg' },
+    dexter: { bg: '#000000', text: '#f44336', img: 'https://i.redd.it/vpphyhydmzbe1.png' },
+    theoffice: { bg: '#ffffff', text: '#2196f3', img: 'https://i.pinimg.com/736x/b1/15/69/b11569aff7f83bd458874ed9e5c3c29f.jpg' },
+    theboys: { bg: '#222222', text: '#ffcc00', img: 'https://wallpapercat.com/w/full/1/9/a/16154-3840x2160-desktop-4k-the-boys-background.jpg' },
+    walkingdead: { bg: '#2d2d2d', text: '#7f8c8d', img: 'https://c4.wallpaperflare.com/wallpaper/281/875/599/jeffrey-dean-morgan-walking-dead-andrew-lincoln-rick-grimes-wallpaper-preview.jpg' },
+    prisonbreak: { bg: '#111111', text: '#e74c3c', img: 'https://images8.alphacoders.com/519/thumb-1920-519889.jpg' },
+    loki: { bg: '#0f0f0f', text: '#bada55', img: 'https://images4.alphacoders.com/138/1385082.jpg' },
+    theflash: { bg: '#ff0000', text: '#ffff00', img: 'https://i.pinimg.com/736x/95/44/c4/9544c4a4ede9b28bb0b8e6c71ef49e3c.jpg' },
+    narcos: { bg: '#3e2723', text: '#ff5722', img: 'https://wallpapers.com/images/featured/narcos-background-6s656hjsajnzh276.jpg' },
+    dark: { bg: '#121212', text: '#8e44ad', img: 'https://wallpapers.com/images/hd/dark-netflix-69qiv32a2ee7t57l.jpg' },
+    chernobyl: { bg: '#0a0a0a', text: '#f1c40f', img: 'https://wallpapercat.com/w/full/0/b/3/1862860-1920x1080-desktop-full-hd-chernobyl-tv-mini-series-wallpaper-image.jpg' },
+    peakyblinders: { bg: '#2c3e50', text: '#bdc3c7', img: 'https://wallpapercat.com/w/full/0/d/9/12632-1920x1080-desktop-full-hd-peaky-blinders-wallpaper-photo.jpg' },
+    thepenguin: { bg: '#34495e', text: '#ecf0f1', img: 'https://images4.alphacoders.com/137/1377759.jpg' }
+  };
+
+  const serialSelect = document.getElementById('serialSelect');
+  const body = document.body;
+  const form = document.getElementById('signupForm');
+
+  serialSelect.addEventListener('change', () => {
+    const val = serialSelect.value;
+    if(val && serialColors[val]){
+      const { bg, text, img } = serialColors[val];
+      body.style.backgroundColor = bg;
+      body.style.color = text;
+      body.style.backgroundImage = `url('${img}')`;
+      
+
+      form.querySelectorAll('input').forEach(input => {
+        input.style.borderColor = text;
+        input.style.color = text;
+        input.style.backgroundColor = 'rgba(34,34,34,0.8)'; 
+      });
+      form.querySelector('button').style.backgroundColor = text;
+      form.querySelector('button').style.color = bg;
+    } else {
+
+      body.style.backgroundColor = '#1a202c';
+      body.style.color = '#a3bffa';
+      body.style.backgroundImage = 'none';
+
+      form.querySelectorAll('input').forEach(input => {
+        input.style.borderColor = '#4a5568';
+        input.style.color = '#e2e8f0';
+        input.style.backgroundColor = '#2d3748';
+      });
+      form.querySelector('button').style.backgroundColor = '#4f46e5';
+      form.querySelector('button').style.color = 'white';
+    }
+  });
+
+ 
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const inputs = form.querySelectorAll('input');
+    let valid = true;
+    inputs.forEach(input => {
+      if(!input.value.trim()){
+        valid = false;
+        input.classList.add('border-red-500', 'ring-2', 'ring-red-500');
+      } else {
+        input.classList.remove('border-red-500', 'ring-2', 'ring-red-500');
+      }
+    });
+
+    if(valid){
+      alert('Roʻyxatdan muvaffaqiyatli oʻtdingiz! Serial: ' + (serialSelect.value || 'Tanlanmagan'));
+      form.reset();
+      serialSelect.value = '';
+      serialSelect.dispatchEvent(new Event('change'));
+    }
+  });
+</script>
+
+</body>
+</html> 

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seriallar - Muhammadrasul movie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen"
+  style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('33.jpg') no-repeat center/cover;">
+  <header class="bg-gray-800 shadow-md sticky top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <div class="text-3xl font-bold text-orange-500 cursor-pointer" onclick="location.href='index.html'">Muhammadrasul
+        movie</div>
+      <nav>
+        <button id="menu-toggle" class="md:hidden text-orange-500 text-2xl">☰</button>
+        <ul id="menu" class="hidden md:flex gap-6 text-lg">
+          <li><a href="index.html" class="hover:text-orange-500">Bosh sahifa</a></li>
+          <li><a href="serials.html" class="hover:text-orange-500">Seriallar</a></li>
+          <li><a href="anime.html" class="hover:text-orange-500">Animelar</a></li>
+          <li><a href="game.html" class="hover:text-orange-500">🎮 O'yin</a></li>
+          <li><a href="shop.html" class="hover:text-orange-500">Market</a></li>
+          <li><a href="register.html" class="hover:text-orange-500">Ro'yxatdan o'tish</a></li>
+        </ul>
+      </nav>
+      <input type="text" id="search-input" placeholder="Qidiruv..."
+        class="rounded-full px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+    </div>
+  </header>
+
+  <main class="container mx-auto p-6">
+    <h2 class="text-3xl font-semibold mb-6 text-orange-500">Seriallar ro‘yxati</h2>
+    <section>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="serials-grid"></div>
+    </section>
+  </main>
+
+  <script>
+    const serials = [
+      { title: "Breaking Bad", year: "2008-2013", genre: "Crime, Drama, Thriller", img: "https://i.ytimg.com/vi/VFLkMDEO-Xc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCIWqspANmI_1P_wSUJA6kbjKeuzQ", trailerUrl: "serial-yulduzlar-orasida.html" },
+      { title: "Better Call Saul", year: "2015-2022", genre: "Crime, Drama", img: "https://i.ytimg.com/vi/Qz3u06eXf0E/maxresdefault.jpg", trailerUrl: "serial-qahramonlar.html" },
+      { title: "The Sopranos", year: "1999-2007", genre: "Crime, Drama", img: "https://i.ytimg.com/vi/KMx4iFcozK0/maxresdefault.jpg", trailerUrl: "serial-sirli-shahar.html" },
+      { title: "Dexter", year: "2006-2013", genre: "Crime, Drama, Mystery", img: "https://i.ytimg.com/vi/84o1Q6fB20k/maxresdefault.jpg", trailerUrl: "serial-tungi-safar.html" },
+      { title: "The Office", year: "2005-2013", genre: "Comedy", img: "https://cdn2.nbcuni.com/NBCUniversal/2025-03/TheOfficeHeroArt.jpg?VersionId=s4xpdQIKU5MYk8Avu6ouhaGqsG0Tx0kh", trailerUrl: "serial-uchar-yulduz.html" },
+      { title: "The Boys", year: "2019-2024", genre: "Action, Comedy, Crime", img: "https://upload.wikimedia.org/wikipedia/uz/d/d9/Yigitlar.jpg", trailerUrl: "serial-olovli-yuraklar.html" },
+      { title: "The Walking Dead", year: "2010-2022", genre: "Drama, Horror, Thriller", img: "https://i.ytimg.com/vi/sfAc2U20uyg/maxresdefault.jpg", trailerUrl: "serial-sarguzasht.html" },
+      { title: "Prison Break", year: "2005-2017", genre: "Action, Crime, Drama", img: "https://i.ytimg.com/vi/UjuS-OkNbdA/maxresdefault.jpg", trailerUrl: "serial-sarguzasht.html" },
+      { title: "Loki", year: "2021-2023", genre: "Action, Adventure, Fantasy", img: "https://i.ytimg.com/vi/dug56u8NN7g/maxresdefault.jpg", trailerUrl: "serial-sarguzasht.html" },
+      { title: "The Flash", year: "2014-2023", genre: "Action, Adventure, Drama", img: "https://i.ytimg.com/vi/r51cYVZWKdY/maxresdefault.jpg", trailerUrl: "serial-sarguzasht.html" },
+      { title: "Narcos", year: "2015-2017", genre: "Biography, Crime, Drama", img: "https://i.ytimg.com/vi/xl8zdCY-abw/maxresdefault.jpg", trailerUrl: "serial-sarguzasht.html" },
+      { title: "Dark", year: "2017-2020", genre: "Crime, Drama, Mystery", img: "https://i.ytimg.com/vi/JCCssUOtn2E/maxresdefault.jpg", trailerUrl: "serial-sarguzasht.html" },
+      { title: "Chernobyl", year: "2019", genre: "Drama, History, Thriller", img: "https://i.ytimg.com/vi/_tAhiwb1NYk/maxresdefault.jpg", trailerUrl: "serial-sarguzasht.html" },
+      { title: "Peaky Blinders", year: "2013-2022", genre: "Crime, Drama", img: "https://i.ytimg.com/vi/oVzVdvGIC7U/maxresdefault.jpg", trailerUrl: "serial-sarguzasht.html" },
+      { title: "The Penguin", year: "2024", genre: "Crime, Drama", img: "https://i.ytimg.com/vi/sfJG6IiA_s8/maxresdefault.jpg", trailerUrl: "serial-sarguzasht.html" },
+      { title: "Game of Thrones", year: "2011-2019", genre: "Action, Adventure, Drama", img: "https://i.ytimg.com/vi/giYeaKsXnsI/maxresdefault.jpg", trailerUrl: "serial-sarguzasht.html" },
+    ];
+
+    const serialsGrid = document.getElementById('serials-grid');
+
+    function displaySerials(list) {
+      serialsGrid.innerHTML = "";
+      list.forEach(serial => {
+        const card = document.createElement('div');
+        card.className = "bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-orange-500 cursor-pointer transition";
+        card.innerHTML = `
+          <a href="${serial.trailerUrl}" class="block group">
+            <img src="${serial.img}" alt="${serial.title}" class="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="p-4">
+              <h3 class="text-xl font-semibold text-orange-400 group-hover:text-orange-500">${serial.title}</h3>
+              <p class="text-gray-400">${serial.year}</p>
+            </div>
+          </a>
+        `;
+        serialsGrid.appendChild(card);
+      });
+    }
+
+    displaySerials(serials);
+
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', e => {
+      const query = e.target.value.toLowerCase();
+      const filtered = serials.filter(s => s.title.toLowerCase().includes(query));
+      displaySerials(filtered);
+    });
+
+   
+    const menuToggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    menuToggle.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+
+  <footer class="bg-gray-800 text-center p-4 mt-10 text-sm text-gray-400">
+    © 2025 Muhammadrasul Movie. Barcha huquqlar himoyalangan.
+  </footer>
+</body>
+
+</html>

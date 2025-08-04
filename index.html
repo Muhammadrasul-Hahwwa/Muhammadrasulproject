@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Muhammadrasul Kino Sayti</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen"
+    style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('22.jpg') no-repeat center/cover;">
+
+    <header class="bg-gray-800 shadow-md sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <div class="text-3xl font-bold text-orange-500 cursor-pointer" onclick="location.href='index.html'">
+                Muhammadrasul movie
+            </div>
+            <nav>
+                <button id="menu-toggle" class="md:hidden text-orange-500 text-2xl">
+                    ☰
+                </button>
+                <ul class="hidden md:flex gap-6 text-lg" id="menu">
+                    <nav>
+                        <ul class="flex space-x-6 text-white text-lg">
+                            <li><a href="index.html" class="hover:text-orange-500">Bosh sahifa</a></li>
+                            <li><a href="serials.html" class="hover:text-orange-500">Seriallar</a></li>
+                            <li><a href="anime.html" class="hover:text-orange-500">Animelar</a></li>
+                            <li><a href="game.html" class="hover:text-orange-500">🎮 O'yin</a></li>
+                            <li><a href="shop.html" class="hover:text-orange-500">Market</a></li>
+                            <li><a href="register.html" class="hover:text-orange-500">Ro'yxatdan o'tish</a></li>
+                        </ul>
+                    </nav>
+
+                </ul>
+            </nav>
+
+            <div class="flex gap-4 items-center">
+                <div class="flex items-center gap-4">
+                    <select id="genre-select"
+                        class="rounded-full px-4 py-2 bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-orange-500 pr-3 pl-3">
+                        <option value="">Hammasi</option>
+                    </select>
+
+                    <input type="text" id="search-input" placeholder="Qidiruv..."
+                        class="ml-auto w-[400px] rounded-full px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-orange-500" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="swiper mySwiper mt-6 max-w-screen-xl mx-auto rounded-xl overflow-hidden">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="https://cdn.wallpapersafari.com/53/82/LOs54h.jpg" alt="Banner 1" class="w-full " />
+            </div>
+            <div class="swiper-slide">
+                <img src="https://images.bauerhosting.com/legacy/empire-tmdb/films/16869/images/bk0GylJLneaSbpQZXpgTwleYigq.jpg?ar=16%3A9&fit=crop&crop=top&auto=format&w=1440&q=80" alt="Banner 2" class="w-full" />
+            </div>
+            <div class="swiper-slide">
+                <img src="https://theactionelite.com/wp-content/uploads/2022/01/1uKHoFWyYJn060dpIXUCU7Wbc15.jpg" alt="Banner 3" class="w-full" />
+            </div>
+            <div class="swiper-slide">
+                <img src="https://occ-0-8407-2218.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABUAS1SYsKjzGeWSB7GXdqdq_uWY9AOr8LAByZrXZmp9HI2jdTpLv0gqwwa8G5qTpypvru_2PH8LWvEYheir37TNwuGmkCZHAHkW-.jpg?r=516" alt="Banner 4" class="w-full" />
+            </div>
+            <div class="swiper-slide">
+                <img src="https://ntvb.tmsimg.com/assets/p31064_v_h10_ao.jpg?w=1280&h=720" alt="Banner 5" class="w-full" />
+            </div>
+            <div class="swiper-slide">
+                <img src="https://occ-0-8407-2218.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABUSHzic9qCq4UqNw_V77KY2sKS437AFQyg1VcUXxSvd-yL9YMbsOmPDhps9X78_Yw9YmtaG1X6HhLnjCZsbOvNx3N4l5OPC6plGr.jpg?r=eec" alt="Banner 6" class="w-full" />
+            </div>
+            <div class="swiper-slide">
+                <img src="https://occ-0-8407-2219.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABZYvmEzR52npYTJenuQQiSD-sTM-v7w71ZnXJrdS8KXyX9MSsmenERf_XLD9AhZsyFwz8DYpvIHcpLi2Hc6c_qDKU5Q32Vyg1ssl.jpg?r=d6d" alt="Banner 7" class="w-full" />
+            </div>
+            <div class="swiper-slide">
+                <img src="https://occ-0-8407-2218.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYkY6oNKD8CWYger22NQpx3lQ_5OylmOoYMWI7zT6SvRBMoWDyfQPxi9hu0NPm5n2ONuD19K1dHrAFtu-DfJHV6_eJNxqKxJlJdw.jpg?r=124" alt="Banner 8" class="w-full" />
+            </div>
+            <div class="swiper-slide">
+                <img src="https://occ-0-8407-2218.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABT0ym-wHqUdlRwjw4DBcu-FQTb9VyK0ZV1SQq6qK-dcflTSSuXhP_IVh81C9S-B8n6_ERgKOmESSk58CQn1GQ1EmIojaR6YP8yvD.jpg?r=b5b" alt="Banner 9" class="w-full" />
+            </div>
+            <div class="swiper-slide">
+                <img src="https://occ-0-8407-2219.1.nflxso.net/dnm/api/v6/Z-WHgqd_TeJxSuha8aZ5WpyLcX8/AAAABexTt_Li5auwnbMvRldFQMpvdIWQjmQVwvC08CAy2GuzyXD9_5C5eXHw3IuYJfOjRpaaP8LUr2QURtTZ5V_Pl8kNFDRQ1PJJ_reX.jpg?r=083" alt="Banner 10" class="w-full" />
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div
+            class="swiper-button-next absolute top-1/2 -translate-y-1/2 right-2 w-10 h-10 bg-black bg-opacity-40 rounded-full shadow-md text-white flex items-center justify-center cursor-pointer">
+        </div>
+        <div
+            class="swiper-button-prev absolute top-1/2 -translate-y-1/2 left-2 w-10 h-10 bg-black bg-opacity-40 rounded-full shadow-md text-white flex items-center justify-center cursor-pointer">
+        </div>
+    </div>
+
+    <main class="container mx-auto p-6">
+        <h2 class="text-3xl font-semibold mb-6 text-orange-500">Kinolar</h2>
+        <div id="movies-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+
+        <form id="comment-form" class="mt-4">
+            <textarea class="w-full bg-gray-700 p-2 rounded text-white" placeholder="Fikr yozing..."></textarea>
+            <button class="mt-2 bg-orange-500 px-4 py-2 rounded text-white" type="submit">Yuborish</button>
+        </form>
+        <div id="comments" class="mt-4 space-y-2 text-sm text-gray-300"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+     
+        const swiper = new Swiper(".mySwiper", {
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
+        
+        function renderStars(rating) {
+            const fullStars = '★'.repeat(Math.floor(rating));
+            const emptyStars = '☆'.repeat(5 - Math.floor(rating));
+            return fullStars + emptyStars;
+        }
+
+       
+        const movies = [
+            {
+                title: "The Pursuit of Happyness",
+                year: "2006",
+                genre: "Drama",
+                img: "https://i.ytimg.com/vi/DMOBlEcRuw8/maxresdefault.jpg",
+                trailerUrl: "baht.html",
+            },
+            {
+                title: "The Godfather",
+                year: "1972",
+                genre: "Crime, Drama",
+                img: "https://i.ytimg.com/vi/UaVTIH8mujA/maxresdefault.jpg",
+                trailerUrl: "https://youtu.be/UaVTIH8mujA?si=JoI2t8cWyB3xJmSE"
+            },
+            {
+                title: "The Shawshank Redemption",
+                year: "1994",
+                genre: "Drama",
+                img: "https://i.ytimg.com/vi/NmzuHjWmXOc/maxresdefault.jpg",
+                trailerUrl: "https://www.youtube.com/embed/6hB3S9bztOQ"
+            },
+            {
+                title: "The Godfather Part II",
+                year: "1974",
+                genre: "Crime, Drama",
+                img: "https://i.ytimg.com/vi/tF_v4ZZkQWE/maxresdefault.jpg",
+                trailerUrl: "https://www.youtube.com/embed/9O1Iy9RbCsA"
+            },
+            {
+                title: "The Dark Knight",
+                year: "2008",
+                genre: "Action, Crime, Drama",
+                img: "https://i.ytimg.com/vi/EXeTwQWrcwY/maxresdefault.jpg",
+                trailerUrl: "https://www.youtube.com/embed/EXe4Q4aGk_c"
+            },
+            {
+                title: "Schindler’s List",
+                year: "1993",
+                genre: "Biography, Drama, History",
+                img: "https://i.ytimg.com/vi/gG22XNhtnoY/maxresdefault.jpg",
+                trailerUrl: "https://www.youtube.com/embed/gG22XNhtSNA"
+            },
+            {
+                title: "Pulp Fiction",
+                year: "1994",
+                genre: "Crime, Drama",
+                img: "https://i.ytimg.com/vi/5ZAhzsi1ybM/maxresdefault.jpg",
+                trailerUrl: "https://www.youtube.com/embed/s75k_V0Qh-s"
+            },
+            {
+                title: "Forrest Gump",
+                year: "1994",
+                genre: "Drama, Romance",
+                img: "https://i.ytimg.com/vi/XHhAG-YLdk8/maxresdefault.jpg",
+                trailerUrl: "https://www.youtube.com/embed/bT0p6mOa_iQ"
+            },
+            {
+                title: "Inception",
+                year: "2010",
+                genre: "Action, Adventure, Sci-Fi",
+                img: "https://i.ytimg.com/vi/YoHD9XEInc0/maxresdefault.jpg",
+                trailerUrl: "https://www.youtube.com/embed/YoHD9XEInc0"
+            },
+            {
+                title: "Fight Club",
+                year: "1999",
+                genre: "Drama",
+                img: "https://i.ytimg.com/vi/qtRKdVHc-cE/maxresdefault.jpg",
+                trailerUrl: "https://www.youtube.com/embed/bdU2z-z6S5o"
+            },
+            {
+                title: "Interstellar",
+                year: "2014",
+                genre: "Adventure, Drama, Sci-Fi",
+                img: "https://i.ytimg.com/vi/zSWdZVtXT7E/maxresdefault.jpg",
+                trailerUrl: "https://www.youtube.com/embed/zSWdZVtXT7E"
+            },
+            {
+                title: "The Matrix",
+                year: "1999",
+                genre: "Action, Sci-Fi",
+                img: "https://i.ytimg.com/vi/vKQi3bBA1y8/maxresdefault.jpg",
+                trailerUrl: "https://www.youtube.com/embed/vKQi3bBA1y8"
+            },
+            {
+                title: "Goodfellas",
+                year: "1990",
+                genre: "Biography, Crime, Drama",
+                img: "https://i.ytimg.com/vi/2ilzidi_J8Q/maxresdefault.jpg",
+                trailerUrl: "https://www.youtube.com/embed/2ilzidi_J8Q"
+            }
+        ];
+
+        // Kinolarni sahifaga chiqarish
+        const moviesGrid = document.getElementById("movies-grid");
+
+        function displayMovies(list) {
+            moviesGrid.innerHTML = "";
+            list.forEach(movie => {
+                const movieCard = document.createElement("div");
+                movieCard.className = "bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer";
+                movieCard.innerHTML = `
+                    <a href="${movie.trailerUrl}" target="_blank" rel="noopener noreferrer">
+                        <img src="${movie.img}" alt="${movie.title}" class="w-full h-64 object-cover" />
+                        <div class="p-4">
+                            <h3 class="text-xl font-semibold">${movie.title}</h3>
+                            <p class="text-gray-400">${movie.year} — ${movie.genre}</p>
+                        </div>
+                    </a>
+                `;
+                moviesGrid.appendChild(movieCard);
+            });
+        }
+
+        displayMovies(movies);
+
+        // Qidiruv va janrlar uchun ma'lumotlarni yaratish
+        const genreSelect = document.getElementById("genre-select");
+        const searchInput = document.getElementById("search-input");
+
+        // Janrlarni avtomatik to‘ldirish
+        function fillGenres() {
+            const genres = new Set();
+            movies.forEach(movie => {
+                movie.genre.split(",").forEach(g => genres.add(g.trim()));
+            });
+            const sortedGenres = Array.from(genres).sort();
+            sortedGenres.forEach(genre => {
+                const option = document.createElement("option");
+                option.value = genre;
+                option.textContent = genre;
+                genreSelect.appendChild(option);
+            });
+        }
+        fillGenres();
+
+        // Filtrlash funksiyasi
+        function filterMovies() {
+            const selectedGenre = genreSelect.value.toLowerCase();
+            const searchTerm = searchInput.value.toLowerCase();
+
+            const filtered = movies.filter(movie => {
+                const genreMatch = selectedGenre === "" || movie.genre.toLowerCase().includes(selectedGenre);
+                const searchMatch = movie.title.toLowerCase().includes(searchTerm);
+                return genreMatch && searchMatch;
+            });
+
+            displayMovies(filtered);
+        }
+
+        genreSelect.addEventListener("change", filterMovies);
+        searchInput.addEventListener("input", filterMovies);
+
+        // Izohlar uchun oddiy funksiyalar
+        const commentForm = document.getElementById("comment-form");
+        const commentsDiv = document.getElementById("comments");
+
+        commentForm.addEventListener("submit", e => {
+            e.preventDefault();
+            const textarea = commentForm.querySelector("textarea");
+            const commentText = textarea.value.trim();
+            if (commentText) {
+                const commentEl = document.createElement("div");
+                commentEl.textContent = commentText;
+                commentEl.className = "bg-gray-700 p-2 rounded";
+                commentsDiv.appendChild(commentEl);
+                textarea.value = "";
+            }
+        });
+
+        // Menyuni toggle qilish (mobil uchun)
+        const menuToggle = document.getElementById("menu-toggle");
+        const menu = document.getElementById("menu");
+
+        menuToggle.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    </script>
+</body>
+
+</html>
